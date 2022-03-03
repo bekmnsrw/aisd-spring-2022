@@ -2,13 +2,6 @@ import javafx.util.Pair;
 
 public class P2 {
     public static void main(String[] args) {
-        Lst<Integer> lst = Lst.cons(0,
-                Lst.cons(2,
-                        Lst.cons(15,
-                                Lst.cons(4,
-                                        Lst.cons(3,
-                                                Lst.nil())))));
-        System.out.println(Lst.findCycle(lst));
     }
 }
 
@@ -45,8 +38,8 @@ class Lst<T> {
         Lst<T> slow = lst;
         boolean hasLoop = false;
         int lstLength = 0;
-        int loopLength = 1;
-        int lengthBeforeLoop = 1;
+        int loopLength = 0;
+        int lengthBeforeLoop = 0;
 
         // проверка на наличие цикла
         while (fast.next != null && fast.next.next != null && slow != null && !hasLoop) {
@@ -63,6 +56,7 @@ class Lst<T> {
                 loopLength++;
                 slow = slow.next;
             }
+            loopLength++;
         }
 
         // количество элементов до цикла
